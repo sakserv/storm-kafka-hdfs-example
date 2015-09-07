@@ -17,7 +17,7 @@ import backtype.storm.Config;
 import backtype.storm.StormSubmitter;
 import backtype.storm.topology.TopologyBuilder;
 import com.github.sakserv.config.ConfigVars;
-import com.github.sakserv.config.PropertyParser;
+import com.github.sakserv.propertyparser.PropertyParser;
 import com.github.sakserv.storm.configs.HdfsBoltConfigBuilder;
 import com.github.sakserv.storm.configs.KafkaSpoutConfigBuilder;
 import com.github.sakserv.storm.configs.StormConfig;

@@ -10,6 +10,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <hadoop-mini-clusters.version>0.0.15</hadoop-mini-clusters.version>
+        <property-parser.version>0.0.1</property-parser.version>
+        <kafka-readfile-producer.version>0.0.1</kafka-readfile-producer.version>
         <regex-tester.version>0.1</regex-tester.version>
         <slf4j.version>1.7.10</slf4j.version>
         <junit.version>4.11</junit.version>
@@ -153,6 +155,20 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Helper Projects -->
+        <dependency>
+            <groupId>com.github.sakserv</groupId>
+            <artifactId>kafka-readfile-producer</artifactId>
+            <version>${kafka-readfile-producer.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.sakserv</groupId>
+            <artifactId>property-parser</artifactId>
+            <version>${property-parser.version}</version>
+        </dependency>
+
+        <!-- JSON Library Deps -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
@@ -165,11 +181,6 @@
             <version>2.6.1</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.github.sakserv</groupId>
-            <artifactId>kafka-readfile-producer</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 
     <build>

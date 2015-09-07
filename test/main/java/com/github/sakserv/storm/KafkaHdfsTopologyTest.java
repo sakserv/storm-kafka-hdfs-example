@@ -16,9 +16,9 @@ package com.github.sakserv.storm;
 import backtype.storm.Config;
 import backtype.storm.topology.TopologyBuilder;
 import com.github.sakserv.config.ConfigVars;
-import com.github.sakserv.config.PropertyParser;
 import com.github.sakserv.kafka.producer.KafkaReadfileProducer;
 import com.github.sakserv.minicluster.impl.*;
+import com.github.sakserv.propertyparser.PropertyParser;
 import com.github.sakserv.storm.configs.HdfsBoltConfigBuilder;
 import com.github.sakserv.storm.configs.KafkaSpoutConfigBuilder;
 import com.github.sakserv.storm.configs.StormConfig;
@@ -65,7 +65,6 @@ public class KafkaHdfsTopologyTest {
     private static StormLocalCluster stormLocalCluster;
     private static KafkaLocalBroker kafkaLocalBroker;
     private static HdfsLocalCluster hdfsLocalCluster;
-    private static HbaseLocalCluster hbaseLocalCluster;
 
     @BeforeClass
     public static void setUp() throws Exception {

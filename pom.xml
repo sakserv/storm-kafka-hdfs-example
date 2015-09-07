@@ -190,6 +190,9 @@
             <resource>
                 <directory>src/main/resources</directory>
             </resource>
+            <resource>
+                <directory>test/main/resources</directory>
+            </resource>
         </resources>
 
         <plugins>

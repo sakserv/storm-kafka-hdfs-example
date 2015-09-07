@@ -39,7 +39,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <hadoop-mini-clusters.version>0.0.15</hadoop-mini-clusters.version>
         <property-parser.version>0.0.2</property-parser.version>
-        <kafka-readfile-producer.version>0.0.2</kafka-readfile-producer.version>
+        <kafka-readfile-producer.version>0.0.3</kafka-readfile-producer.version>
         <jackson.version>2.6.1</jackson.version>
         <slf4j.version>1.7.10</slf4j.version>
         <junit.version>4.11</junit.version>

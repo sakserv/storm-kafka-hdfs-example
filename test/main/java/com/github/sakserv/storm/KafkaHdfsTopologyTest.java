@@ -153,14 +153,12 @@ public class KafkaHdfsTopologyTest {
                 Boolean.parseBoolean(propertyParser.getProperty(ConfigVars.STORM_ENABLE_DEBUG_KEY)),
                 Integer.parseInt(propertyParser.getProperty(ConfigVars.STORM_NUM_WORKERS_KEY)));
 
-        //stormConfig.putAll(hbaseLocalCluster.getHbaseConfiguration());
-
         // Submit the topology
         stormLocalCluster.submitTopology(propertyParser.getProperty(ConfigVars.STORM_TOPOLOGY_NAME_KEY),
                 stormConfig, topologyBuilder.createTopology());
 
         // Let the topology run
-        Thread.sleep(30000);
+        Thread.sleep(10000);
 
         // Validate the results match the input
         validateHdfsResults();

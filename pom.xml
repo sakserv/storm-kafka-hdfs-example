@@ -7,11 +7,39 @@
     <version>0.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+    <name>Storm Kafka HDFS Example</name>
+    <description>Storm topology leveraging the kafka spout and HDFS bolt.</description>
+    <url>https://github.com/sakserv/storm-kafka-hdfs-example</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:git://github.com/sakserv/storm-kafka-hdfs-example.git</connection>
+        <developerConnection>scm:git:git@github.com:sakserv/storm-kafka-hdfs-example.git</developerConnection>
+        <url>http://github.com/sakserv/storm-kafka-hdfs-example</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Shane Kumpf</name>
+            <email>sakserv@sakserv.org</email>
+            <organization>Hortonworks</organization>
+            <organizationUrl>http://www.hortonworks.com/</organizationUrl>
+        </developer>
+    </developers>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <hadoop-mini-clusters.version>0.0.15</hadoop-mini-clusters.version>
-        <property-parser.version>0.0.1</property-parser.version>
-        <kafka-readfile-producer.version>0.0.1</kafka-readfile-producer.version>
+        <property-parser.version>0.0.2</property-parser.version>
+        <kafka-readfile-producer.version>0.0.2</kafka-readfile-producer.version>
         <regex-tester.version>0.1</regex-tester.version>
         <slf4j.version>1.7.10</slf4j.version>
         <junit.version>4.11</junit.version>
@@ -186,6 +214,7 @@
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
         <testSourceDirectory>test/main/java</testSourceDirectory>
+
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -196,13 +225,13 @@
         </resources>
 
         <plugins>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>1.4</version>
                 <configuration>
-                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                    <createDependencyReducedPom>true</createDependencyReducedPom>
+                    <minimizeJar>true</minimizeJar>
                     <filters>
                         <filter>
                             <artifact>*:*</artifact>
@@ -210,6 +239,8 @@
                                 <exclude>META-INF/*.SF</exclude>
                                 <exclude>META-INF/*.DSA</exclude>
                                 <exclude>META-INF/*.RSA</exclude>
+                                <exclude>META-INF/LICENSE*</exclude>
+                                <exclude>LICENSE</exclude>
                             </excludes>
                         </filter>
                     </filters>
@@ -221,16 +252,10 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-
                             <transformers>
-                                <transformer
-                                        implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
-                                <transformer
-                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                </transformer>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer" />
                             </transformers>
-
-
                         </configuration>
                     </execution>
                 </executions>
@@ -241,7 +266,8 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.18</version>
                 <configuration>
-                    <forkMode>pertest</forkMode>
+                    <forkCount>1</forkCount>
+                    <reuseForks>false</reuseForks>
                     <argLine>-Xms4g -Xmx4g -XX:MaxPermSize=1024M</argLine>
                     <testFailureIgnore>false</testFailureIgnore>
                     <skip>false</skip>
@@ -249,15 +275,104 @@
             </plugin>
 
             <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.2</version>
-            <configuration>
-                <source>1.7</source>
-                <target>1.7</target>
-            </configuration>
-        </plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.2</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.1</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.scm</groupId>
+                        <artifactId>maven-scm-api</artifactId>
+                        <version>1.9.2</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.apache.maven.scm</groupId>
+                        <artifactId>maven-scm-provider-gitexe</artifactId>
+                        <version>1.9.2</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.1.2</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.8.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
         </plugins>
     </build>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus snapshot repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>sonatype-nexus-staging</id>
+            <name>Sonatype Nexus release repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <profiles>
+        <profile>
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 </project>

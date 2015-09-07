@@ -40,11 +40,10 @@
         <hadoop-mini-clusters.version>0.0.15</hadoop-mini-clusters.version>
         <property-parser.version>0.0.2</property-parser.version>
         <kafka-readfile-producer.version>0.0.2</kafka-readfile-producer.version>
-        <regex-tester.version>0.1</regex-tester.version>
+        <jackson.version>2.6.1</jackson.version>
         <slf4j.version>1.7.10</slf4j.version>
         <junit.version>4.11</junit.version>
         <storm.version>0.10.0.2.3.0.0-2557</storm.version>
-        <hive.version>1.2.1.2.3.0.0-2557</hive.version>
         <hadoop.version>2.7.1.2.3.0.0-2557</hadoop.version>
         <kafka.version>0.8.2.2.3.0.0-2557</kafka.version>
     </properties>
@@ -60,12 +59,6 @@
     <dependencies>
 
         <!-- Common Deps -->
-        <dependency>
-            <groupId>com.thewonggei</groupId>
-            <artifactId>regex-tester</artifactId>
-            <version>${regex-tester.version}</version>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -184,13 +177,13 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>2.6.1</version>
+            <version>${jackson.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.6.1</version>
+            <version>${jackson.version}</version>
         </dependency>
 
     </dependencies>

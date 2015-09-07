@@ -23,7 +23,7 @@ import com.github.sakserv.storm.configs.KafkaSpoutConfigBuilder;
 import com.github.sakserv.storm.configs.StormConfig;
 import org.apache.storm.hdfs.bolt.rotation.FileRotationPolicy;
 
-public class KafkaHbaseHdfsTopology {
+public class KafkaHdfsTopology {
 
     public static void main(String[] args) throws Exception {
 

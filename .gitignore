@@ -1,10 +1,12 @@
 *.class
 
+.DS_Store
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
 # Package Files #
-*.jar
+#*.jar
 *.war
 *.ear
 
@@ -15,18 +17,13 @@ hs_err_pid*
 target/
 build/
 
-# User-specific stuff:
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/dictionaries
+# Idea
+.idea
+*/*.iml
+*.iml
 
-# Sensitive or high-churn files:
-.idea/dataSources.ids
-.idea/dataSources.xml
-.idea/sqlDataSources.xml
-.idea/dynamic.xml
-.idea/uiDesigner.xml
+# Coverage report
+coverage-error.log
 
-# Gradle/Maven:
-.idea/gradle.xml
-.idea/libraries
+# Oozie sharelib cache
+share_lib_cache
